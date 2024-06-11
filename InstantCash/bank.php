@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Check if the user is logged in
+
 if (!isset($_SESSION["user_phone"]) || !isset($_SESSION["user_password"])) {
     header("Location: login.php");
     exit;
@@ -13,44 +13,42 @@ $username_db = "root";
 $password_db = "";
 $dbname = "InstantCash";
 
-// Create a database connection
+
 $conn = new mysqli($servername, $username_db, $password_db, $dbname);
 
-// Check the connection
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Initialize variables to hold form data
 $amount = $bankName = $accountNumber = "";
 $error_message = "";
 
-// Check if the form is submitted
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Retrieve and sanitize form data
+
     $amount = mysqli_real_escape_string($conn, $_POST["amount"]);
     $bankName = mysqli_real_escape_string($conn, $_POST["bankName"]);
     $accountNumber = mysqli_real_escape_string($conn, $_POST["accountNumber"]);
 
-    // Generate a unique transaction_ids
+
     $transaction_ids = uniqid();
 
-    // Validate the amount
+
     if ($amount <= 0) {
         $error_message = "Invalid Amount";
     } else {
-        // Get the user's phone number
+
         $user_phone = $_SESSION["user_phone"];
 
-        // Update user's balance
+
         $update_user_balance_sql = "UPDATE account SET balance = balance + '$amount' WHERE phone = '$user_phone'";
         if ($conn->query($update_user_balance_sql) === TRUE) {
             echo "<div class='message text-success'>Deposit Successful!</div>";
         } else {
             $error_message = "Error updating user's balance: " . $conn->error;
         }
-
-        // Insert into cash_in table
+        
         $insert_cash_in_sql = "INSERT INTO cash_in (transaction_ids, phone_number, amount, b_id) VALUES ('$transaction_ids', '$user_phone', '$amount', 1)";
         if ($conn->query($insert_cash_in_sql) === TRUE) {
             echo "Deposit Successful!";
@@ -60,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 
-// Close the database connection
+
 $conn->close();
 ?>
 
