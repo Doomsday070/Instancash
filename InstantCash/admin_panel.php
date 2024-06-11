@@ -1,5 +1,5 @@
 <?php
-// Database connection
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -11,12 +11,12 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Count total members
+
 $sql_members = "SELECT COUNT(*) as total_members FROM user";
 $result_members = $conn->query($sql_members);
 $row_members = $result_members->fetch_assoc();
 
-// Calculate total transactions amount
+
 $sql_cash_in = "SELECT SUM(amount) as total_cash_in FROM cash_in";
 $result_cash_in = $conn->query($sql_cash_in);
 $row_cash_in = $result_cash_in->fetch_assoc();
@@ -31,7 +31,7 @@ $row_history = $result_history->fetch_assoc();
 
 $total_transactions = $row_cash_in['total_cash_in'] + $row_cash_out['total_cash_out'] + $row_history['total_history'];
 
-// Get existing users
+
 $sql_existing_users = "SELECT userid, phone, firstname, lastname, nid, email FROM user";
 $result_existing_users = $conn->query($sql_existing_users);
 
