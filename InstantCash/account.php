@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Check if the user is authenticated
+
 if (!isset($_SESSION["user_phone"])) {
     header("Location: login.php");
     exit;
@@ -20,11 +20,11 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Initialize $first_name
-$first_name = "";
-$last_name = ""; // Initialize last_name
 
-// Use prepared statement to fetch user's first name
+$first_name = "";
+$last_name = ""; 
+
+
 $query = "SELECT firstname FROM user WHERE phone = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("s", $loggedInUserPhone);
@@ -40,7 +40,7 @@ if ($result->num_rows == 1) {
     $first_name = $user_data["firstname"];
 }
 
-// Use prepared statement to fetch user's last name
+
 $query = "SELECT lastname FROM user WHERE phone = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("s", $loggedInUserPhone);
