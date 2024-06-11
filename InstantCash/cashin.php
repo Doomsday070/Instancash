@@ -7,10 +7,10 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #125A66; /* Background color */
+            background-color: #125A66; 
             margin: 0;
             padding: 0;
-            color: black; /* Text color */
+            color: black; 
         }
         .navbar {
             background-color: white;
@@ -20,7 +20,7 @@
 
         .navbar a {
             margin: 0 15px;
-            color: black; /* Dark blue text color */
+            color: black; 
             text-decoration: none;
             font-weight: bold;
         }
@@ -28,7 +28,7 @@
         .account-title {
             text-align: center;
             margin-bottom: 20px;
-            color: white; /* Title color */
+            color: white; 
         }
 
         .action-box {
@@ -50,7 +50,7 @@
         }
 
         .action-box a {
-            color: #125A66; /* Dark blue text color */
+            color: #125A66; 
             text-decoration: none;
         }
 
@@ -61,35 +61,35 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
-            padding: 5px 10px; /* Adjust padding as needed */
-            font-size: 14px; /* Adjust font size as needed */
+            padding: 5px 10px; 
+            font-size: 14px; 
         }
 
         .btn-check-balance:hover {
             background-color: #0B3B44;
         }
 
-        /* Custom styles for the modal */
+
         .modal-content {
             border-radius: 10px;
         }
 
-        /* Style the iframe to fill the modal body */
+
         .modal-body iframe {
             width: 100%;
-            height: 500px; /* Adjust the height as needed */
+            height: 500px; 
             border: none;
-            opacity: 0; /* Initially hidden */
-            transition: opacity 0.5s ease-in-out; /* Add a fade-in transition */
+            opacity: 0; 
+            transition: opacity 0.5s ease-in-out; 
         }
 
-        /* Show the iframe when it's loaded */
+
         .modal-body iframe.loaded {
             opacity: 1;
         }
 
         h1 {
-            text-align: center; /* Center-align the h1 element */
+            text-align: center; 
         }
     </style>
     <title>InstantCash - Cash In</title>
@@ -116,7 +116,7 @@
             document.getElementById('local-time').textContent = localTime;
         }
         updateLocalTime();
-        setInterval(updateLocalTime, 1000); // Update every second
+        setInterval(updateLocalTime, 1000); 
     </script>
 
     <main class="container mt-5">
@@ -145,9 +145,9 @@
         </div>
     </main>
 
-    <!-- Bootstrap Modals -->
 
-    <!-- Bank Modal -->
+
+
     <div class="modal fade" id="BankModal" tabindex="-1" role="dialog" aria-labelledby="BankModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -158,7 +158,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <iframe src="" class="loaded"></iframe> <!-- Leave the 'src' attribute empty initially -->
+                    <iframe src="" class="loaded"></iframe> 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -178,7 +178,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <iframe src="" class="loaded"></iframe> <!-- Leave the 'src' attribute empty initially -->
+                    <iframe src="" class="loaded"></iframe> 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -192,27 +192,27 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script>
-        // Function to open the modal and load content from the specified URL
+
         function openModal(modalId, contentUrl) {
-            // Set the 'src' attribute of the iframe when the modal is opened
+
             $(modalId + ' iframe').attr('src', contentUrl);
-            $(modalId).modal('show'); // Show the modal
+            $(modalId).modal('show'); 
         }
 
-        // When the iframe has loaded, add the 'loaded' class to trigger the fade-in effect
+
         $('.modal-body iframe').on('load', function() {
             $(this).addClass('loaded');
         });
 
-        // Attach click event handlers to the action links
+
         $('#openBankModal').click(function (e) {
-            e.preventDefault(); // Prevent the default link behavior
-            openModal('#BankModal', 'http://localhost/InstantCash/bank.php'); // Change the URL as needed
+            e.preventDefault(); 
+            openModal('#BankModal', 'http://localhost/InstantCash/bank.php'); 
         });
 
         $('#openCreditCardModal').click(function (e) {
-            e.preventDefault(); // Prevent the default link behavior
-            openModal('#CreditCardModal', 'http://localhost/InstantCash/creditcard.php'); // Change the URL as needed
+            e.preventDefault(); 
+            openModal('#CreditCardModal', 'http://localhost/InstantCash/creditcard.php'); 
         });
     </script>
 </body>
